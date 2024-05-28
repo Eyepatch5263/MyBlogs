@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+    <title>Blog</title>
+    <style>
+        body {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+    </style>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+    <div class="container mb-0 mt-3 ml-1">
+        <img src="<%= blog.createdBy.profileImage %>" style="margin: 0; padding: 0;" width="100px"/> <%= blog.createdBy.name %>
+
+    </div>
+    
+    <div class="container mt-1">
+        <h1>
+            <%= blog.title %>
+        </h1>
+        <img src="<%= blog.coverImage %>" width="500px" style="border-radius: 1.5rem;">
+        <p style="margin-left: 2px; font-size: 22px; margin-top: 10px;"> <%- blog.body %> </p>
+    </div>
+
+    <div class="container mt-2">
+        <% if (locals.user) { %>
+            <form action="/comment/<%= blog._id %>" method="post" class="form-container">
+                <div class="mb-3">
+                    <div>
+                        <input type="text" class="form-control" name="content" placeholder="Enter Your Comment">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-dark">Comment</button>
+            </form>
+        <% } %>
+
+        <div style="display: flex; justify-content: center; margin-bottom: 2rem;"><h5>Comment Section (<%= comments.length %>)</h5></div>
+    </div>
+    <div class="mt-2">
+        <% comments.forEach(comment => { %>
+        <div class="container">
+            <img src="<%= comment.createdBy.profileImage %>" style="margin: 0; padding: 0;" width="50px"/> <%= comment.createdBy.name %>   
+            <p><%- comment.content %></p>
+
+        </div>
+        <% }) %>
+    </div>
+    
+    
+    <%- include('./partials/script') %>
+</body>
+</html>

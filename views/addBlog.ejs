@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head') %>
+        <title>Home</title>
+        <style>
+            body {
+                font-family: Georgia, 'Times New Roman', Times, serif;
+            }
+        </style>
+</head>
+
+<body>
+    <%- include('./partials/nav') %>
+        <div class="container mt-3">
+            <form action="/blog" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="coverImage">Cover Image</label>
+                    <input type="file" class="form-control" name="coverImage" id="coverImage" aria-describedby="coverImage">
+
+                </div>
+                <div class="mb-3">
+                    <label for="title">Title</label>
+                    <input type="title" class="form-control" name="title" id="title" aria-describedby="title">
+
+                </div>
+                <div class="mb-3">
+                    <label for="body">Scream</label>
+                    <textarea class="form-control" name="body" id="body" rows="3"></textarea>
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-dark">Submit</button>
+                </div>
+            </form>
+
+            <%- include('./partials/script') %>
+</body>
+
+</html>
